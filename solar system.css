@@ -1,0 +1,221 @@
+
+    body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black; /* Black background */
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.system-title {
+  position: absolute;
+  top: 10px;
+  color: white;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  z-index: 100;
+  margin: 0;
+}
+
+.container {
+  width: 90em;
+  height: 90em;
+  position: relative;
+  font-size: 5px;
+}
+
+/* Sun */
+.sun img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16em;
+  height: 16em;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  box-shadow: 0 0 40px #ffdd00;
+
+}
+
+/* Orbit base */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin linear infinite;
+}
+
+
+
+
+/* Planets */
+.planet img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+} 
+
+
+
+/* Earth */
+.earth {
+  width: 1.3em;
+  height: 1.3em;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.earth img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Moon orbit relative to Earth */
+.moon-orbit {
+  position: absolute;
+  top: 50%;   /* center on Earth */
+  left: 50%;
+  width: 4em;   /* distance from Earth */
+  height: 4em;
+  transform: translate(-50%, -50%);
+  animation: spin 3s linear infinite;
+}
+
+.moon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.moon img {
+  width: 0.4em;   /* smaller than Earth */
+  height: 0.4em;
+  border-radius: 50%;
+}
+
+
+.moon img {
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: 50%;
+}
+
+
+
+
+/* Sizes (scaled proportionally) */
+.mercury { width: 1.0em; height: 1.0em; }
+.venus   { width: 1.6em; height: 1.6em; }
+.earth   { width: 1.8em; height: 1.8em; }
+.moon    { width: 0.6em; height: 0.6em; }
+.mars    { width: 1.4em; height: 1.4em; }
+.jupiter { width: 6.0em; height: 6.0em; }
+.saturn  { width: 5.5em; height: 5.5em; }
+.uranus  { width: 4.0em; height: 4.0em; }
+.neptune { width: 3.8em; height: 3.8em; }
+
+
+/* Orbit sizes + speeds */
+.mercury-orbit { width: 12em; height: 12em; animation-duration: 6s; }
+.venus-orbit   { width: 18em; height: 18em; animation-duration: 10s; }
+.earth-orbit   { width: 24em; height: 24em; animation-duration: 12s; }
+.moon-orbit    { width: 4em;  height: 4em;  animation-duration: 3s; }
+.mars-orbit    { width: 30em; height: 30em; animation-duration: 15s; }
+.jupiter-orbit { width: 40em; height: 40em; animation-duration: 20s; }
+.saturn-orbit  { width: 50em; height: 50em; animation-duration: 25s; }
+.uranus-orbit  { width: 60em; height: 60em; animation-duration: 30s; }
+.neptune-orbit { width: 70em; height: 70em; animation-duration: 35s; }
+
+
+/* Rotation animation */
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+
+@keyframes rotate-axis {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Apply rotation with tilt */
+.mercury img { animation: rotate-axis 6s linear infinite;  transform: rotate(0deg); }
+.venus img   { animation: rotate-axis 20s linear infinite; transform: rotate(177deg); } /* retrograde */
+.earth img   { animation: rotate-axis 10s linear infinite; transform: rotate(23.5deg); }
+.mars img    { animation: rotate-axis 12s linear infinite; transform: rotate(25deg); }
+.jupiter img { animation: rotate-axis 9s linear infinite;  transform: rotate(3deg); }
+.saturn img  { animation: rotate-axis 11s linear infinite; transform: rotate(27deg); }
+.uranus img  { animation: rotate-axis 14s linear infinite; transform: rotate(98deg); } /* sideways spin */
+.neptune img { animation: rotate-axis 16s linear infinite; transform: rotate(28deg); }
+
+
+
+
+
+
+
+
+/* Planet rotation on axis */
+.planet img {
+  width: 100%;
+  height: 100%;
+  border-radius: 70%;
+  animation: rotate-axis 10s linear infinite; /* spin on axis */
+}
+
+
+.mercury img { animation-duration: 6s; }   /* fast spin */
+.venus img   { animation-duration: 20s; }  /* slow spin */
+.earth img   { animation-duration: 10s; }  /* moderate */
+.mars img    { animation-duration: 12s; }
+.jupiter img { animation-duration: 9s; }
+.saturn img  { animation-duration: 11s; }
+.uranus img  { animation-duration: 14s; }
+.neptune img { animation-duration: 16s; }
+
+
+/* Base rotation */
+@keyframes rotate-axis {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Wrapper applies tilt */
+.axis {
+  display: inline-block;
+  transform-origin: center center;
+}
+
+/* Planet spins inside tilted wrapper */
+.axis img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: rotate-axis 10s linear infinite;
+}
+
+/* Individual planet tilts */
+.mercury-axis { transform: rotate(0deg); }
+.venus-axis   { transform: rotate(177deg); }  /* retrograde */
+.earth-axis   { transform: rotate(23.5deg); }
+.mars-axis    { transform: rotate(25deg); }
+.jupiter-axis { transform: rotate(3deg); }
+.saturn-axis  { transform: rotate(27deg); }
+.uranus-axis  { transform: rotate(98deg); }   /* sideways */
+.neptune-axis { transform: rotate(28deg); }
